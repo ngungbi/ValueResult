@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -8,6 +9,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Ngb.ValueResult.Extension</PackageId>
         <Authors>Harish Mahatma Putra</Authors>
+        <RepositoryUrl>https://github.com/ngungbi/ValueResult</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
