@@ -1,7 +1,7 @@
 namespace Ngb.ValueResult;
 
 public static class ValueResultExtension {
-    public static ValueResult AsValueResult<T>(this ValueResult<T> result) {
-        return result.IsSuccess ? ValueResult.Success : result.AsError();
+    public static Result AsValueResult<T>(this Result<T> result) {
+        return result.IsSuccess ? Result.Success : result.AsError();
     }
 }

@@ -3,7 +3,7 @@
 namespace Ngb.ValueResult.Extension;
 
 public static class ValueResultMvcExtension {
-    public static IActionResult ToActionResult(this ValueResult result, int statusCode = 204) {
+    public static IActionResult ToActionResult(this Result result, int statusCode = 204) {
         if (result.IsSuccess) {
             return new StatusCodeResult(statusCode);
         }
@@ -13,7 +13,7 @@ public static class ValueResultMvcExtension {
         };
     }
     
-    public static IActionResult ToActionResult<T>(this ValueResult<T> result) {
+    public static IActionResult ToActionResult<T>(this Result<T> result) {
         if (result.IsSuccess) {
             return new OkObjectResult(result.Value);
         }

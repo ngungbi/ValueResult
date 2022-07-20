@@ -1,17 +1,17 @@
 ﻿namespace Ngb.ValueResult;
 
-public readonly struct ValueResult<TResult> {
+public readonly struct Result<TResult> {
     public readonly TResult Value;
     public readonly IError? Error;
     public bool IsSuccess => Error == null;
     public bool IsFailed => Error != null;
 
-    public ValueResult(TResult value) {
+    public Result(TResult value) {
         Value = value;
         Error = null;
     }
 
-    public ValueResult(TResult value, IError? error) {
+    public Result(TResult value, IError? error) {
         Value = value;
         Error = error;
     }
@@ -21,19 +21,19 @@ public readonly struct ValueResult<TResult> {
         error = Error;
     }
 
-    public static implicit operator ValueResult<TResult>(TResult value) {
-        return new ValueResult<TResult>(value);
+    public static implicit operator Result<TResult>(TResult value) {
+        return new Result<TResult>(value);
     }
 
-    public static implicit operator TResult(ValueResult<TResult> value) {
+    public static implicit operator TResult(Result<TResult> value) {
         return value.Value;
     }
 
-    public static implicit operator ValueResult<TResult>(Error? error) {
-        return new ValueResult<TResult>(default!, error);
+    public static implicit operator Result<TResult>(Error? error) {
+        return new Result<TResult>(default!, error);
     }
 
-    public static implicit operator ValueResult<TResult>(Exception exception) {
+    public static implicit operator Result<TResult>(Exception exception) {
         if (exception is IError error) {
             return new Error(error.StatusCode, error.ErrorCode, error.ErrorDetails);
         }

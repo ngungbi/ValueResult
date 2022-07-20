@@ -5,11 +5,11 @@ public static class ErrorExtension {
         return error as Error;
     }
 
-    public static Error? AsError<T>(this ValueResult<T> result) {
+    public static Error? AsError<T>(this Result<T> result) {
         return result.Error as Error;
     }
 
-    public static Error? AsError(this ValueResult result) {
+    public static Error? AsError(this Result result) {
         return result.Error as Error;
     }
 }

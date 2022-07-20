@@ -9,11 +9,11 @@ public class Tests {
     [SetUp]
     public void Setup() { }
 
-    private void AssertSuccess<T>(ValueResult<T> result) {
+    private void AssertSuccess<T>(Result<T> result) {
         AssertSuccess(result.AsValueResult());
     }
 
-    private void AssertSuccess(ValueResult result) {
+    private void AssertSuccess(Result result) {
         Assert.IsTrue(result.IsSuccess);
         Assert.IsFalse(result.IsFailed);
     }
@@ -24,11 +24,11 @@ public class Tests {
         Assert.AreEqual(200, statusCode);
     }
 
-    private void AssertFailed<T>(ValueResult<T> result) {
+    private void AssertFailed<T>(Result<T> result) {
         AssertFailed(result.AsValueResult());
     }
 
-    private void AssertFailed(ValueResult result) {
+    private void AssertFailed(Result result) {
         Assert.IsFalse(result.IsSuccess);
         Assert.IsTrue(result.IsFailed);
     }
@@ -136,54 +136,54 @@ public class Tests {
         Assert500Error(response);
     }
 
-    private ValueResult<int> PassErrorInt() {
+    private Result<int> PassErrorInt() {
         var result = GetIntError();
         if (result.IsFailed) result.AsError();
         return result;
     }
 
-    private ValueResult PassErrorVoid() {
+    private Result PassErrorVoid() {
         var result = GetVoidError();
         if (result.IsFailed) return result.AsError();
         return result;
     }
 
-    private ValueResult<int> PassInt() {
+    private Result<int> PassInt() {
         var result = GetInt();
         if (result.IsFailed) result.AsError();
         return result;
     }
 
-    private ValueResult PassVoid() {
+    private Result PassVoid() {
         var result = GetVoid();
         if (result.IsFailed) return result.AsError();
         return result;
     }
 
-    private ValueResult<int> GetInt() {
+    private Result<int> GetInt() {
         return 123;
     }
 
-    private ValueResult<int> GetIntError() {
+    private Result<int> GetIntError() {
         return new Error(500, "Test", "Unknown Error");
     }
 
-    private ValueResult<Model> GetClass() {
+    private Result<Model> GetClass() {
         return new Model {
             ModelId = 1,
             Description = "Test"
         };
     }
 
-    private ValueResult<Model> GetClassError() {
+    private Result<Model> GetClassError() {
         return new Error(500, "Test", "Unknown Error");
     }
 
-    private ValueResult GetVoid() {
-        return ValueResult.Success;
+    private Result GetVoid() {
+        return Result.Success;
     }
 
-    private ValueResult GetVoidError() {
+    private Result GetVoidError() {
         return new Error(500, "Test", "Unknown Error");
     }
 }
